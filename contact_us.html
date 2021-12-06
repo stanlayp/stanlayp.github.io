@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="menu.css">
+    <style>
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid rgb(139, 133, 142);
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+        input[type=text]:focus {
+            border: 3px solid rgb(21, 243, 255);
+        }
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+        input[type=password]:focus {
+            border: 3px solid rgb(21, 243, 255);
+        }
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+        input[type=button], input[type=submit], input[type=reset] {
+            background-color: rgb(21, 243, 255);
+            border: none;
+            color: rgb(42, 41, 41);
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100%;          
+        }
+        input[type=text] {
+            transition: width 0.4s ease-in-out;
+        }
+        input[type=text]:focus {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <form action="/simpan.php" method="">
+                
+        <label for="namalengkap">Nama Lengkap:</label>               
+        <input type="text" id="namalengkap" name="namalengkap" placeholder="ketikan Nama Lengkap ">
+    
+        <label for="email">Email:</label> 
+        <input type="text" id="email" name="email" placeholder="ketikan Email anda">
+                    
+        <label for="username">Username:</label>    
+        <input type="text" id="username" name="username" placeholder="ketikan Username">
+            
+        <label for="pwd">Password:</label>
+        <input type="password" id="pwd" name="pwd"><br>
+               
+        <label for="jenis_kelamin">Jenis Kelamin:</label>
+        <input type="radio" name="jenis_kelamin" value="laki_laki" id="laki_laki"><label for="laki_laki">Laki-Laki</label>
+        <input type="radio" name="jenis_kelamin" value="perempuan" id="perempuan"><label for="perempuan">Perempuan</label><br>
+
+        <label for="agama">Agama:</label>
+            <select id="agama" name="agama">
+                <option value="pilih_agama" selected>Pilih Agama</option>
+                <option value="kristen_protestan">Kristen Protestan</option>
+                <option value="katokik">Katolik</option>
+                <option value="islam">Islam</option>
+                <option value="hindu">Hindu</option>
+                <option value="budha">Budha</option>
+            </select>
+
+        <label for="alamat">Alamat:</label>
+        <textarea name="alamat" rows="10" cols="40">
+            Isi Alamat Disini.
+        </textarea><br>
+                
+        <label for="hobby">Hobby:</label>
+        <input type="checkbox" id="olahraga" name="olahraga" value="olahraga"><label for="olahraga">Olahraga</label>
+        <input type="checkbox" id="buat_lagu" name="buat_lagu" value="buat_lagu"><label for="buat_lagu">Buat Lagu</label>
+        <input type="checkbox" id="main_musik" name="main_musik" value="main_musik"><label for="main_musik">Main Musik</label>
+                
+                    
+        <input type="submit" value="Submit">
+        <input type="reset">
+    </form>
+    <div class="dropdown">
+        <button class="dropbtn">MENU</button></li>
+        <div class="dropdown-content">
+        <a href="biodata.html " target="_blank">Biodata</a>
+        <a href="index.html" target="_blank">Home</a>
+        <a href="gallery.html" target="_blank">Gallery</a>
+        <a href="bebas.html" target="_blank">Bebas</a>
+    </div>
+</body>
+</html>
+                
