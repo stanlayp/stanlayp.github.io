@@ -6,12 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+  .discover {
+  border-style: none;
+  background-color: #f1f1f1;
+  text-align: center;
+  border-radius: 20px;
+  margin: 25px 650px;
+  padding: 13px;
+  color:black;
+}
+    </style>
 </head>
 <body>
-    <div class="container p-5 my-5 border">
-        <h1>My First Bootstrap Page</h1>
-        <p>This container has a border and some extra padding and margins.</p>
-      </div>
-    
+    <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="log.png"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="https://fti.unai.edu">FTI UNAI</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://unai.edu">WEBSITE UNAI</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="biodata.html">BIODATA</a></li>
+                  <li><a class="dropdown-item" href="contact_us.html">CONTACT US</a></li>
+                  <li><a class="dropdown-item" href="gallery.html">GALLERY</a></li>
+                  <li><a class="dropdown-item" href="bebas.html">BEBAS</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div id="demo" class="carousel slide text-white text-center" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <div>
+                <h4>BLACK BADGE</h4>
+                <h1>GHOST</h1>
+                <p class="discover">EXPLORE NOW</p>
+            </div>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="gambar/Ghost.jpg" alt="Los Angeles" class="d-block w-100">
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 p-4 bg-dark text-white text-center">
+        <p>MY ROLLS ROYCE</p>
+        <p>COMPLAIN</p>
+        <p>PRIVACY</p>
+        <p>FIND A DEALER</p>
+    </div>
 </body>
 </html>
