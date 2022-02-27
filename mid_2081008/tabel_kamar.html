@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Asrama</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Absensi Asrama</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Absensi Asrama</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Tabel Kamar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tabel_asrama.html">Tabel Asrama</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tabel_mahasiswa.html">Tabel Mahasiswa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tabel_absensi.html">Tabel Absensi</a>
+            </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <div id="app">
+
+        <div class="container">
+            <div class="py-5 text-center">
+              <h2>Tabel kamar</h2>
+            </div>
+            <div class="col-md-12">
+              <table class="table table-striped table-hover caption-top">
+                <caption>Data Kamar Asrama</caption>
+                  <thead class="table-light">
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ID asrama</th>
+                        <th scope="col">Lantai</th>
+                        <th scope="col">No Kamar</th>
+                        <th scope="col">Jumlah penghuni</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr v-for="tabelKamar in tabel_kamar">
+                        <th scope="row">{{ tabelKamar.id_kamar }}</th>
+                        <td>{{ tabelKamar.id_asrama }}</td>
+                        <td>{{ tabelKamar.lantai }}</td>
+                        <td>{{ tabelKamar.no_kamar }}</td>
+                        <td>{{ tabelKamar.jmlh_penghuni }}</td>
+                        <td><button class="btn btn-outline-dark btn-sm" v-on:click="getEdit(tabelKamar)">Ubah</button></td>
+                        <td><button class="btn btn-outline-danger btn-sm" v-on:click="getDelete(tabelKamar)">Hapus</button></td>
+                      </tr>
+                    </tbody>
+                </table>
+
+                <div v-if="message" class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+                
+            
+                <h4 class="mb-3">Edit Data </h4>
+                <form class="needs-validation" novalidate>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="id_asrama">Id asrama</label>
+                      <input  v-model="id_asrama" type="text" class="form-control" id="id_asrama" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid Id asrama is required.
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="lantai">Lantai</label>
+                      <input v-model="lantai" type="text" class="form-control" id="lantai" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid lantai asrama is required.
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="no_kamar">No kamar</label>
+                      <input v-model="no_kamar" type="text" class="form-control" id="no_kamar" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid Nomor kamar is required.
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="jmlh_penghuni">Jumlah penghuni</label>
+                      <input v-model="jmlh_penghuni" type="text" class="form-control" id="jmlh_penghuni" placeholder="" value="" required>
+                      <div class="invalid-feedback">
+                        Valid Jumlah penghuni Asrama is required.
+                      </div>
+                    </div>
+                  </div>
+                 </div>
+
+                  <hr class="mb-4">
+                  <button class="btn btn-outline-secondary btn-md" v-on:click="resetForm()">Tambah data kamar baru </button>
+                  <button v-if="!editMode && !deleteMode" v-on:click="createTabelKamar" class="btn btn-outline-secondary btn-md" type="submit">Tambahkan Data</button>
+                  <button v-if="editMode" v-on:click="updateTabelKamar" class="btn btn-outline-dark btn-md" type="submit">Perbarui Data</button>
+                  <button v-if="deleteMode" v-on:click="deleteTabelKamar" class="btn btn-outline-danger btn-md" type="submit">Hapus Data</button>
+                  
+                </form>
+            </div>
+          </div>
+
+            
+          <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(255, 255, 255);">
+              © 2020 Copyright:
+              <a class="text-dark" href="https://fti.unai.edu/">FTI UNAI</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+
+    </div>
+    
+
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var app = new Vue ({
+            el: '#app',
+            data: {
+                errors: [],
+                message: null,
+                tabel_kamar:[],
+                tabelKamarIdEdit: null,
+                tabelKamarIdDelete: null,
+                editMode: false,
+                deleteMode: false,
+                id_asrama: '',
+                lantai: '',
+                no_kamar: '',
+                jmlh_penghuni: ''
+            },
+            mounted: function() {
+                this.getTabelKamar();
+            },
+            methods: {
+                getTabelKamar() {
+                    axios.get('https://6215d4a5c9c6ebd3ce32d9f3.mockapi.io/tabel_kamar')
+                        .then(response => {
+                            this.tabel_kamar = response.data;
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                createTabelKamar: function(){
+                    axios.post('https://6215d4a5c9c6ebd3ce32d9f3.mockapi.io/tabel_kamar', {
+                        id_asrama: this.id_asrama,
+                        lantai: this.lantai,
+                        no_kamar: this.no_kamar,
+                        jmlh_penghuni: this.jmlh_penghuni
+
+                    })
+                    .then(response => {
+                            this.getTabelKamar();
+                            this.message = "Data telah ditambahkan";
+                            console.log(response);
+                    })
+                    .catch(error => {
+                            console.log(error);
+                    });
+                },
+                resetForm: function () {
+                    this.message = null;
+                    this.editMode = false;
+                    this.deleteMode = false;
+                    this.tabelKamarIdEdit = null;
+                    this.id_asrama =null;
+                    this.lantai =null;
+                    this.no_kamar =null;
+                    this.jmlh_penghuni =null;
+                },
+                getEdit: function (tabelKamar) {
+                    this.message = null;
+                    this.editMode = true;
+                    this.deleteMode = false;
+                    this.tabelKamarIdEdit = tabelKamar.id_kamar;
+                    this.id_asrama = tabelKamar.id_asrama;
+                    this.lantai = tabelKamar.lantai;
+                    this.no_kamar = tabelKamar.no_kamar;
+                    this.jmlh_penghuni =tabelKamar.jmlh_penghuni;
+                },
+                getDelete: function (tabelKamar) {
+                    this.message = null;
+                    this.deleteMode = true;
+                    this.editMode = false;
+                    this.tabelKamarIdDelete = tabelKamar.id_kamar;
+                    this.id_asrama = tabelKamar.id_asrama;
+                    this.lantai = tabelKamar.lantai;
+                    this.no_kamar = tabelKamar.no_kamar;
+                    this.jmlh_penghuni =tabelKamar.jmlh_penghuni;
+                },
+                updateTabelKamar: function () {
+                    axios.put(`https://6215d4a5c9c6ebd3ce32d9f3.mockapi.io/tabel_kamar/${this.tabelKamarIdEdit}`, {
+                            id_asrama: this.id_asrama,
+                            lantai: this.lantai,
+                            no_kamar: this.no_kamar,
+                            jmlh_penghuni: this.jmlh_penghuni
+                        })
+                        .then(res => {
+                            // handle success
+                            this.message = "Data telah diperbarui";
+                            this.getTabelKamar();
+                        })
+                        .catch(err => {
+                            // handle error
+                            console.log(err);
+                        })
+                },
+                // Delete User
+                deleteTabelKamar: function () {
+                    axios.delete(`https://6215d4a5c9c6ebd3ce32d9f3.mockapi.io/tabel_kamar/${this.tabelKamarIdDelete}`)
+                        .then(res => {
+                            // handle success
+                            this.message = "Data telah dihapus";
+                            this.getTabelKamar();
+                        })
+                        .catch(err => {
+                            // handle error
+                            console.log(err);
+                        })
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
